@@ -9,6 +9,8 @@ var _sliderFeedback = _interopRequireDefault(require("./components/sliderFeedbac
 
 var _sliderStock = _interopRequireDefault(require("./components/sliderStock"));
 
+var _sliderQuality = _interopRequireDefault(require("./components/sliderQuality"));
+
 var _burgerMenu = _interopRequireDefault(require("./components/burger-menu"));
 
 var _tabs = _interopRequireDefault(require("./components/tabs"));
@@ -25,6 +27,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
   // When DOM is ready
   $(function () {
     //const accordions = new Accordion();
+    $.fancybox.open($('.gallery'));
+
     _burgerMenu["default"].init();
 
     _slider["default"].init();
@@ -32,6 +36,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
     _sliderFeedback["default"].init();
 
     _sliderStock["default"].init();
+
+    _sliderQuality["default"].init();
 
     var accordions = new _accordion["default"]();
 
@@ -72,7 +78,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
   });
 })(jQuery);
 
-},{"./components/accordion":2,"./components/burger-menu":3,"./components/scroll-smooth":4,"./components/slider":5,"./components/sliderFeedback":6,"./components/sliderStock":7,"./components/tabs":8}],2:[function(require,module,exports){
+},{"./components/accordion":2,"./components/burger-menu":3,"./components/scroll-smooth":4,"./components/slider":5,"./components/sliderFeedback":6,"./components/sliderQuality":7,"./components/sliderStock":8,"./components/tabs":9}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -383,7 +389,22 @@ var swiperSlider = function () {
       el: '.swiper-pagination',
       type: 'bullets',
       clickable: true
-    }
+    },
+    observer: true,
+    observeSlideChildren: true,
+    observeParents: true // on: {
+    //   slideChange(swiper) {
+    //     const slides = swiper.slides;
+    //     const activeSlideIndex = swiper.activeIndex;
+    //     const activeSlideNode = slides[activeSlideIndex];
+    //     const videoSrc = activeSlideNode.dataset.videoSrc;
+    //     const bindedTextSliders = Array.from(document.querySelectorAll(".swiper-main__slide"));
+    //     const foundText = bindedTextSliders.find(video => video.dataset.aciveSlider === videoSrc);
+    //     bindedTextSliders.forEach(video => video.removeAttribute("src"));
+    //     foundText.attr("src");
+    //   }
+    // }
+
   });
 
   var init = function init() {};
@@ -445,6 +466,53 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var swiperSliderQuality = function () {
+  var accountantInit = new Swiper('.quality-slider', {
+    spaceBetween: 20,
+    speed: 800,
+    loop: true,
+    autoplay: {
+      delay: 10000,
+      disableOnInteraction: false
+    },
+    preloadImages: true,
+    lazy: true,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 4
+      },
+      768: {
+        slidesPerView: 2
+      },
+      320: {
+        slidesPerView: 1
+      }
+    }
+  });
+
+  var init = function init() {};
+
+  return {
+    init: init
+  };
+}();
+
+var _default = swiperSliderQuality;
+exports["default"] = _default;
+
+},{}],8:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
 var swiperSliderStock = function () {
   var accountantInit = new Swiper('.swiper-stock', {
     slidesPerView: 1,
@@ -480,7 +548,7 @@ var swiperSliderStock = function () {
 var _default = swiperSliderStock;
 exports["default"] = _default;
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
